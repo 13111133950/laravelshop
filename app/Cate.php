@@ -16,5 +16,9 @@ class Cate extends Model
     /* public function scopeLimit($arr){
         $arr->where('id','<','10');
     } */
-    
+    public function getProBycId($id)
+    {
+        $pro=Pro::where('cId',$id)->get();
+        return $pro;
+    }
 }

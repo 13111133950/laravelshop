@@ -16,4 +16,9 @@ class Pro extends Model
         $cate=Cate::find($id);
         return $cate->cName;
     }
+    public function getImgById($id)
+    {
+        $img=Album::where('pid',$id)->first();
+        return $img;
+    }
 }

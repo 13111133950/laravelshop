@@ -59,8 +59,8 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="index.php">主页</a></li>
-						<li><a href="shop.php" target="mainFrame">商品大全</a></li>
-						<li><a href="cart.php" target="mainFrame">购物车</a></li>
+						<li><a href="{{url('shop')}}" target="mainFrame">商品大全</a></li>
+						<li><a href="{{url('cart')}}" target="mainFrame">购物车</a></li>
 						
 					</ul>
 				</div>

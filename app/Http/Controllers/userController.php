@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Cate;
+use Illuminate\Support\Facades\Session;
+use App\Pro;
 class userController extends Controller{
     public function reg(Request $request){
         $user=new User();
@@ -68,14 +71,36 @@ class userController extends Controller{
         ]);
     }
     public function index(){
-        return view('common.frame');
+        $cate=Cate::all();
+        return view('shop.index',[
+            'cate'=>$cate
+        ]);
     }
     public function quit(){
         session(['user'=>null]);
         return redirect('user/log');
     }
-    public function shop(){
-        return view('shop.shop');
+    public function shop(Request $request){
+        $order=$request->input('order');
+        $key=$request->input('key');
+        if($order){
+            session()->put('order',$order);
+        }
+        if($key){
+            session()->put('key',$key);
+        }
+        $order=Session::get('order');
+        $key=Session::get('key');
+        if($order&&$key){
+            $pros=Pro::where('isShow', 1)->where('pName','like','%'.$key.'%')->orderby('iPrice',$order)->get();
+        }elseif ($order){
+            $pros=Pro::where('isShow', 1)->orderby('iPrice',$order)->get();
+        }else{
+            $pros=Pro::where('isShow', 1)->where('pName','like','%'.$key.'%')->get();
+        }
+        return view('shop.shop',[
+            'pros'=>$pros
+        ]);
     }
     
     

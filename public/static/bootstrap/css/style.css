@@ -1129,3 +1129,6 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 .pagination > li > a, .pagination > li > span {
   color: #5a88ca;
 }
+
+.icon1{width:44px; height:44px; background:url(../img/shopIcon.jpg) left top no-repeat; float:left;}
+.search1{text-align: right;}

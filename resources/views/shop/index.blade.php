@@ -1,22 +1,35 @@
 @extends('common.frame')
 
 @section('content')
-              
-<div class="search1">
-    <input type="submit" value="按价格排序">
-    <select id="" class="select" onchange="change(this.value)">
-    	<option>-请选择-</option>
-        <option value="asc" >由低到高</option>
-        <option value="desc">由高到底</option>
-    </select>
-    <input type="submit" value="搜索">
-    <input type="text"  id="search"  name="key" onkeypress="search()">
-</div>
-    
+
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                                <input type="submit" value="搜索">
+                                <input type="text"  id="search"  name="key" onkeypress="search()">
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
     <div class="single-product-area">
+        @foreach($cate as $cates)
+            <div>
+            	<span class="icon1"></span><h3>{{$cates->cName}}</h3>
+            </div>
 		<div class="container">
+		
+		
+
+			
 			<div class="row2">
+             
+			<?php $pros=$cates->getProBycId($cates->id);?>
 			@foreach($pros as $pro)
 			<?php $img=$pro->getImgById($pro->id);?>
 				
@@ -45,13 +58,14 @@
 					
 				</div>
             @endforeach
+			
 			</div>
+			
+
 		</div>
+	@endforeach
      </div>
 <script type="text/javascript">
- 	function change(order){
-		window.location="{{url('shop')}}?order="+order;
-	}
 	function search(){
 		if(event.keyCode==13){
 			var key=document.getElementById("search").value;
