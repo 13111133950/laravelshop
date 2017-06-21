@@ -41,7 +41,7 @@
 							 <img src="image/{{$img->albumPath}}" alt=""> 
 						</div>
 						<div class="product-carousel-price"><h4>
-							<a href="details.php?id={{$pro->id}}" target="mainFrame" >{{$pro->pName}}</a>
+							<a href="{{url('detail')}}?id={{$pro->id}}" target="_blank"  >{{$pro->pName}}</a>
 						</h4></div>
 						<div class="product-carousel-price">
 							<ins>

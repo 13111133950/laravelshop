@@ -22,6 +22,8 @@ route::any('log',['uses'=>'userController@log']);
 route::any('index',['uses'=>'userController@index']);
 route::any('quit',['uses'=>'userController@quit']);
 route::any('shop',['uses'=>'userController@shop']);
+route::any('detail',['uses'=>'userController@detail']);
+route::any('cart',['uses'=>'userController@cart']);
 
 
 

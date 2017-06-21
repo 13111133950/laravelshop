@@ -4,7 +4,7 @@
               
 <div class="search1">
     <input type="submit" value="按价格排序">
-    <select id="" class="select" onchange="change(this.value)">
+    <select  onchange="change(this.value)">
     	<option>-请选择-</option>
         <option value="asc" >由低到高</option>
         <option value="desc">由高到底</option>
@@ -13,10 +13,10 @@
     <input type="text"  id="search"  name="key" onkeypress="search()">
 </div>
     
-    
     <div class="single-product-area">
 		<div class="container">
 			<div class="row2">
+			
 			@foreach($pros as $pro)
 			<?php $img=$pro->getImgById($pro->id);?>
 				
@@ -25,10 +25,10 @@
 					<div class="single-shop-product">
 					
 						<div class="product-upper">
-							 <img src="image/{{$img->albumPath}}" alt=""> 
+							 <img src="image/{{$img->albumPath}}"> 
 						</div>
 						<div class="product-carousel-price"><h4>
-							<a href="details.php?id={{$pro->id}}" target="mainFrame" >{{$pro->pName}}</a>
+							<a href="{{url('detail')}}?id={{$pro->id}}" target="_blank" >{{$pro->pName}}</a>
 						</h4></div>
 						<div class="product-carousel-price">
 							<ins>
@@ -38,13 +38,14 @@
 
 						<div class="product-option-shop">
 							<a class="add_to_cart_button" 
-								href="details.php?id={{$pro->id}}" target="mainFrame">查看详情</a>
+								href="{{url('detail')}}?id={{$pro->id}}" target="_blank">查看详情</a>
 						</div>
 						
 					</div>
 					
 				</div>
             @endforeach
+            
 			</div>
 		</div>
      </div>

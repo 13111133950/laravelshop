@@ -103,7 +103,27 @@ class userController extends Controller{
         ]);
     }
     
-    
+    public function detail(Request $request){
+        $id=$request->input('id');
+        $pro=Pro::find($id);
+        return view('shop.detail',[
+            'pro'=>$pro
+        ]);
+    }
+    public function cart(Request $request){
+        $id=$request->input('id');
+        $num=$request->input('num');
+        $pro=Pro::find($id);
+        $pro['num']=$num;
+        $pro['price']=$num*$pro['iPrice'];
+        /* $arr=$request->session()->get('cart');
+        $arr[] = $pro;
+        $request->session()->put('cart',$arr);  */
+        $arr=session()->all();
+        return view('shop.cart',[
+            'arr'=>$arr,
+        ]);
+    }
     public function test(){
         return view('common.bsframe');
     }
