@@ -29,10 +29,10 @@
                     <ul class="nav navbar-nav">
 						@if (session('user'))
 						<li><i class="fa fa-user"></i>欢迎你，{{session('user')}}</li>
-						<li><a href="{{url('user/quit')}}"><i class="fa fa-user"></i> 注销</a></li>
+						<li><a href="{{url('quit')}}"><i class="fa fa-user"></i> 注销</a></li>
 						@else
-						<li><a href="{{url('user/log')}}"><i class="fa fa-user"></i> 登录</a></li>
-						<li><a href="{{url('user/reg')}}"><i class="fa fa-user"></i> 注册</a></li>
+						<li><a href="{{url('log')}}"><i class="fa fa-user"></i> 登录</a></li>
+						<li><a href="{{url('reg')}}"><i class="fa fa-user"></i> 注册</a></li>
 						@endif
 					</ul>
                     </div>
@@ -67,7 +67,8 @@
 			</div>
 		</div>
 	</div> <!-- End site branding area -->
-    
+    @include('common.message')
+    @include('common.validator')
     @yield('content')
     
     <div class="promo-area">

@@ -198,7 +198,7 @@
 function add(id)
 { 
    var num =  document.getElementById("number").value; 
-   window.location="{{url('cart')}}?id="+id+"&num="+num;
+   window.location="{{url('addcart')}}?id="+id+"&num="+num;
 }
 function jia()
 {

@@ -23,7 +23,7 @@ route::any('index',['uses'=>'userController@index']);
 route::any('quit',['uses'=>'userController@quit']);
 route::any('shop',['uses'=>'userController@shop']);
 route::any('detail',['uses'=>'userController@detail']);
-route::any('cart',['uses'=>'userController@cart']);
+Route::resource('cart', 'cartController');
 
 
 
@@ -31,6 +31,7 @@ route::group(['middleware'=>'logincheck','prefix'=>'user'],function (){
     
 });
 route::get('pro',['uses'=>'proController@showplus']);
+route::get('addcart',['uses'=>'cartController@addcart']);
 
 route::group(['prefix'=>'admin'],function (){
 route::any('test',['uses'=>'userController@test']);

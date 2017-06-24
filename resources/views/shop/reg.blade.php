@@ -61,7 +61,7 @@
 		</div>
 		<div class="login-bottom">
 			<h3>
-				老用户 &nbsp;<a href="login.php">登录</a>
+				老用户 &nbsp;<a href="{{url('log')}}">登录</a>
 			</h3>
 		</div>
 	</div>

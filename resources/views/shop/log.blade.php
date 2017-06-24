@@ -43,7 +43,7 @@
 		</div>
 		<div class="login-bottom">
 			<h3>
-				新用户 &nbsp;<a href="reg.php">注册</a>
+				新用户 &nbsp;<a href="{{url('reg')}}">注册</a>
 			</h3>
 		</div>
 	</div>

@@ -14,14 +14,13 @@ class userController extends Controller{
       $validate=\Validator::make($request->all() ,[
                 'username'=>'required|min:2|max:10',
                 'password'=>'required|min:6|max:14|alpha_num|confirmed',
-                'tel'=>'required|integer',
+                'tel'=>'required',
                 'email'=>'required|email'
             
             ],[
                 'required'=>':attribute 必须填写',
                 'min'=>':attribute太短',
                 'max'=>':attribute太长',
-                'interger'=>':attribute 必须为整数',
                 'confirmed'=>'两次输入的密码不一样',
                 'email'=>'电子邮箱格式不正确',
                 
@@ -38,7 +37,7 @@ class userController extends Controller{
             }
             $arr=$request->all();
             if(User::create($arr)){
-                return redirect('user/log')->with('success','注册成功');
+                return redirect('log')->with('success','注册成功');
             }else {
                 return redirect()->back()->with('error','注册失败');;
             } 
@@ -60,7 +59,7 @@ class userController extends Controller{
            
             if($user){
                  session(['user'=>$arr['username']]);
-                return redirect('user/index')->with('success','登录成功');
+                return redirect('index')->with('success','登录成功');
             }else{
                 return redirect()->back()->with('error','登录失败');;
             }  
@@ -78,7 +77,7 @@ class userController extends Controller{
     }
     public function quit(){
         session(['user'=>null]);
-        return redirect('user/log');
+        return redirect('log');
     }
     public function shop(Request $request){
         $order=$request->input('order');
@@ -108,20 +107,6 @@ class userController extends Controller{
         $pro=Pro::find($id);
         return view('shop.detail',[
             'pro'=>$pro
-        ]);
-    }
-    public function cart(Request $request){
-        $id=$request->input('id');
-        $num=$request->input('num');
-        $pro=Pro::find($id);
-        $pro['num']=$num;
-        $pro['price']=$num*$pro['iPrice'];
-        /* $arr=$request->session()->get('cart');
-        $arr[] = $pro;
-        $request->session()->put('cart',$arr);  */
-        $arr=session()->all();
-        return view('shop.cart',[
-            'arr'=>$arr,
         ]);
     }
     public function test(){
