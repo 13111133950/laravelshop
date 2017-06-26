@@ -11,12 +11,15 @@
 <meta name="keywords"
 	content="Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <link rel="stylesheet" type="text/css" href="{{asset('static/bootstrap/css/loginstyle.css')}}">
+<link rel="stylesheet" href="{{asset('static/bootstrap/css/bootstrap.min.css')}}">
 
 </head>
 <body>
+@include('common.message')
 	<div class="login">
 		<h2>阿飞淘宝网</h2>
 		<div class="login-top">
+			
 			<h1>登录</h1>
 			<form action="" method="post" >
 				 <table align="center" width="350" border="0" class="tb1">
@@ -37,7 +40,7 @@
 			    </table>
 <div align="right"><input type="checkbox" id="a1" class="checked" name="autoFlag" value="1"><label for="a1">自动登陆(一周内自动登陆)</label></div>
 				<div class="forgot">
-					<input type="submit" value="Login">
+					<div class="text-danger">{{$errors->first()}}</div> <input type="submit" value="Login">
 				</div>
 			</form>
 		</div>

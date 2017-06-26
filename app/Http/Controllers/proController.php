@@ -95,7 +95,6 @@ class proController extends Controller
         }else{
             $pro=Pro::where('isShow', 1)->where('pName','like','%'.$key.'%')->paginate(5);
         }
-        
         return view("admin.listPro",[
             'pro'=>$pro,
         ]); 

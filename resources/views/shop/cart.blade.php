@@ -13,6 +13,7 @@
 			</div>
 		</div>
 </div>
+@if($arr)
 <div class="single-product-area">
 			<table align="center">
 				<tr>
@@ -47,4 +48,7 @@
 			</table>
 			
 	</div>
+@else
+    <p align='center'><img src='static/bootstrap/img/baoqian.png'></p>
+ @endif
 @stop

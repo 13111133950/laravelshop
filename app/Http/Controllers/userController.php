@@ -47,7 +47,6 @@ class userController extends Controller{
         ]);
     }
     public function log(Request $request){
-        $user=new User();
         if ($request->isMethod('POST')) {
             $arr=$request->all();
             //$user=DB::select('select * from user where username=?&&password=?',[$arr['username'],$arr['password']]);
@@ -55,19 +54,21 @@ class userController extends Controller{
                 ['username'=>$arr['username'],'password'=>$arr['password']]
             ); */
             $user=User::where( ['username'=>$arr['username'],'password'=>$arr['password']])->get();
-
-           
-            if($user){
+            if($user->first()){
                  session(['user'=>$arr['username']]);
-                return redirect('index')->with('success','登录成功');
+                 if(session('url')){
+                     $url=session('url');
+                     return redirect($url);
+                 }else{
+                     return redirect('index');
+                 }
+                 
             }else{
-                return redirect()->back()->with('error','登录失败');;
-            }  
+                return redirect()->back()->withErrors('用户名密码错误');
+            } 
              
         }
-        return view('shop.log',[
-            'user'=>$user
-        ]);
+        return view('shop.log');
     }
     public function index(){
         $cate=Cate::all();
@@ -76,8 +77,8 @@ class userController extends Controller{
         ]);
     }
     public function quit(){
-        session(['user'=>null]);
-        return redirect('log');
+        session(['user'=>null,'cart'=>null]);
+        return redirect()->back();
     }
     public function shop(Request $request){
         $order=$request->input('order');

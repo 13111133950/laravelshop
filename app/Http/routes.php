@@ -12,9 +12,8 @@ use Psy\Command\WhereamiCommand;
 |
 */
 //·���������ͼ
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::any('/',['uses'=>'userController@index']);
     //����·��
 //route::group(['prefix'=>'user'],function (){
 route::any('reg',['uses'=>'userController@reg']);
@@ -23,15 +22,17 @@ route::any('index',['uses'=>'userController@index']);
 route::any('quit',['uses'=>'userController@quit']);
 route::any('shop',['uses'=>'userController@shop']);
 route::any('detail',['uses'=>'userController@detail']);
-Route::resource('cart', 'cartController');
 
 
 
-route::group(['middleware'=>'logincheck','prefix'=>'user'],function (){
-    
+
+route::group(['middleware'=>'logincheck'],function (){
+    Route::resource('cart', 'cartController');
+    route::get('addcart',['uses'=>'cartController@addcart']);
+
 });
 route::get('pro',['uses'=>'proController@showplus']);
-route::get('addcart',['uses'=>'cartController@addcart']);
+
 
 route::group(['prefix'=>'admin'],function (){
 route::any('test',['uses'=>'userController@test']);

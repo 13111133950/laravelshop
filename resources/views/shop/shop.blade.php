@@ -12,7 +12,7 @@
     <input type="submit" value="搜索">
     <input type="text"  id="search"  name="key" onkeypress="search()">
 </div>
-    
+ @if($pros->first()) 
     <div class="single-product-area">
 		<div class="container">
 			<div class="row2">
@@ -49,6 +49,9 @@
 			</div>
 		</div>
      </div>
+@else
+    <p align='center'><img src='static/bootstrap/img/searchfail.jpg'></p>
+@endif
 <script type="text/javascript">
  	function change(order){
 		window.location="{{url('shop')}}?order="+order;
