@@ -49,10 +49,6 @@ class userController extends Controller{
     public function log(Request $request){
         if ($request->isMethod('POST')) {
             $arr=$request->all();
-            //$user=DB::select('select * from user where username=?&&password=?',[$arr['username'],$arr['password']]);
-            /* $user=DB::table('user')->select(
-                ['username'=>$arr['username'],'password'=>$arr['password']]
-            ); */
             $user=User::where( ['username'=>$arr['username'],'password'=>$arr['password']])->get();
             if($user->first()){
                  session(['user'=>$arr['username']]);
@@ -61,8 +57,7 @@ class userController extends Controller{
                      return redirect($url);
                  }else{
                      return redirect('index');
-                 }
-                 
+                 } 
             }else{
                 return redirect()->back()->withErrors('用户名密码错误');
             } 
@@ -76,8 +71,9 @@ class userController extends Controller{
             'cate'=>$cate
         ]);
     }
-    public function quit(){
-        session(['user'=>null,'cart'=>null]);
+    public function quit(Request $request){
+        //session(['user'=>null,'cart'=>null,'url'=>null]);
+        $request->session()->flush();
         return redirect()->back();
     }
     public function shop(Request $request){

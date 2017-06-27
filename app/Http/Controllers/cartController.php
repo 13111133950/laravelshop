@@ -62,12 +62,16 @@ class cartController extends Controller
              $arr=session()->get('cart');
              $arr[] = $pro;
              session(['cart'=>$arr]);
+             $price= session('total');
+             $price+=$pro['price'];
+             session(['total'=>$price]);
              $mes="成功添加了".$num."件". $pro['pName']." 进购物车！"; 
         }
         else
         {
             $arr[]=$pro;
             session(['cart'=>$arr]);
+            session(['total'=>$pro['price']]);
             $mes="成功添加了".$num."件". $pro->pName." 进购物车！"; 
            
         }
@@ -105,6 +109,16 @@ class cartController extends Controller
      */
     public function destroy($id)
     {
-        return "des";
+        $arr=session('cart');
+        $price=session('total');
+        $price-=$arr[$id]['price'];
+        unset($arr[$id]);
+        session(['cart'=>$arr]);
+        session(['total'=>$price]);
+        $data=[
+            'status'=>1,
+            'msg'=>'删除成功',
+        ];
+        return $data;
     }
 }

@@ -17,19 +17,18 @@ Route::any('/',['uses'=>'userController@index']);
     //����·��
 //route::group(['prefix'=>'user'],function (){
 route::any('reg',['uses'=>'userController@reg']);
-route::any('log',['uses'=>'userController@log']);
+
 route::any('index',['uses'=>'userController@index']);
 route::any('quit',['uses'=>'userController@quit']);
 route::any('shop',['uses'=>'userController@shop']);
 route::any('detail',['uses'=>'userController@detail']);
+Route::resource('cart', 'cartController');
 
-
-
-
+route::group(['middleware'=>'src'],function (){
+    route::any('log',['uses'=>'userController@log']);
+});
 route::group(['middleware'=>'logincheck'],function (){
-    Route::resource('cart', 'cartController');
     route::get('addcart',['uses'=>'cartController@addcart']);
-
 });
 route::get('pro',['uses'=>'proController@showplus']);
 
@@ -46,17 +45,7 @@ route::get('user/{id}/{name?}',function($id,$name='null'){
     return 'User-id-'.$id.'-name-'.$name;
 })->where(['id'=>'[0-9]+','name'=>'[A-Za-z]+']);
 
-//·�ɱ���
 
-
-route::group(['prefix'=>'member'],function (){
-    route::get('basic1',function (){
-        return 'Hello 1 from member';
-    });
-    route::get('user/center121',['as'=>'center',function (){
-    return route('center');
-}]);
-});
 
 
 

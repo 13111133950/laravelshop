@@ -53,8 +53,8 @@
 	<tr>
 		<td colspan="2"><input type="submit"  value="发布商品"/></td>
 	</tr>
-	<input type="hidden" name="_method" value="PATCH">
-	{{ csrf_field() }}
+	<input type="hidden" name="_method" value="PATCH">    <!-- {{ method_field('PUT') }} -->
+	{{ csrf_field() }}   <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
 </table>
 </form>
 <script>
